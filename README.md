@@ -57,3 +57,4 @@ Las decisiones pendientes de la especificación (rol Gerente, permisos de la Man
 | 0003 | Propuesto | Anulación controlada de movimientos en lugar de eliminación |
 | 0004 | Aceptado | PyJWT en lugar de python-jose para JWT |
 | 0005 | Aceptado | Puertas de integración (develop) y liberación certificada por QA (main) |
+| 0006 | Aceptado | Squash para integrar, merge commit para liberar |
