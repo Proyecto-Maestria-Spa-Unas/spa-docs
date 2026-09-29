@@ -58,3 +58,74 @@ Las decisiones pendientes de la especificación (rol Gerente, permisos de la Man
 | 0004 | Aceptado | PyJWT en lugar de python-jose para JWT |
 | 0005 | Aceptado | Puertas de integración (develop) y liberación certificada por QA (main) |
 | 0006 | Aceptado | Squash para integrar, merge commit para liberar |
+
+## 🌿 Cómo contribuir
+
+### 1️⃣ Clonar el repositorio (solo la primera vez)
+
+Use **Git Bash** en Windows o la terminal en Linux/Mac:
+
+```
+git config --global core.autocrlf input
+git clone https://github.com/Proyecto-Maestria-Spa-Unas/spa-docs.git
+cd spa-docs
+git switch main
+```
+
+### 2️⃣ Crear la rama de su tarea
+
+Nunca se trabaja directamente sobre `main` ni `develop`: GitHub rechaza esos push. Cada tarea tiene su rama, creada desde `main` actualizada:
+
+```
+git switch main
+git pull
+git switch -c docs/F1-investigacion-marca
+```
+
+Formato obligatorio: **`tipo/ID-descripcion-corta`**. El `ID` es el de la tarea del sprint en mayúscula (D1, B2, F3, Q1…) y la descripción va en minúsculas, con guiones y sin espacios ni tildes.
+
+| Tipo | Úselo para |
+|---|---|
+| `feature/` | Funcionalidad nueva |
+| `fix/` | Corrección de un defecto |
+| `docs/` | Documentación |
+| `test/` | Pruebas |
+| `refactor/` | Mejora interna sin cambio funcional |
+| `chore/` · `ci/` | Mantenimiento y automatización |
+
+### 3️⃣ Guardar y subir los cambios
+
+```
+git add .
+git commit -s -m "docs(marca): investigación de marca y benchmark (F1)"
+git push -u origin docs/F1-investigacion-marca
+```
+
+El mensaje sigue **Conventional Commits**: `tipo(alcance): descripción (ID)`. La opción `-s` firma el commit.
+
+### 4️⃣ Abrir el Pull Request
+
+```
+gh pr create --base main --fill
+```
+
+O desde GitHub con el botón **Compare & pull request**. En la descripción escriba `Closes Proyecto-Maestria-Spa-Unas/spa-docs#<número de la tarea>`. El PR se fusiona cuando los checks obligatorios están en verde.
+
+### 5️⃣ Mantener su rama al día
+
+Si `main` avanzó mientras usted trabajaba:
+
+```
+git switch main
+git pull
+git switch -
+git rebase main
+git push --force-with-lease
+```
+
+`--force-with-lease` solo se usa sobre **su propia rama**, nunca sobre `main` ni `develop`.
+
+### ❌ Qué no hacer
+
+* No subir archivos `.env`, contraseñas ni llaves: el escaneo de seguridad bloqueará el PR.
+* No mezclar varias tareas en una misma rama: una rama, una tarea, un PR.
