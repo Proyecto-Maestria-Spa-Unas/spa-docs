@@ -55,3 +55,5 @@ Las decisiones pendientes de la especificación (rol Gerente, permisos de la Man
 | 0001 | Aceptado | Organización GitHub con un repositorio por componente |
 | 0002 | Aceptado | Flujo de ramas y puerta de QA antes del merge |
 | 0003 | Propuesto | Anulación controlada de movimientos en lugar de eliminación |
+| 0004 | Aceptado | PyJWT en lugar de python-jose para JWT |
+| 0005 | Aceptado | Puertas de integración (develop) y liberación certificada por QA (main) |
