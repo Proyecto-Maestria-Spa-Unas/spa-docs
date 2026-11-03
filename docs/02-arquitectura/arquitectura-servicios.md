@@ -33,7 +33,7 @@ Cada servicio es dueño de un conjunto de funcionalidades, de sus rutas y de sus
 
 Todas las rutas HTTP cuelgan de `/api/v1`. La base de datos la recibe **S0 · Datos** (`spa-database`, a cargo de mikeforeros): crea y versiona el esquema y lo despliega con su propio pipeline. S1 a S4 se conectan solo a sus propias tablas (sección 3).
 
-La **georreferenciación de proveedores** sí está en la Entrega 2 (D12, X2, X6): tabla `inventario.proveedor` con ubicación PostGIS y búsqueda de proveedores cercanos. La extensión a **varias sedes o bodegas** no está en el plan: la especificación describe un solo establecimiento, así que requiere una decisión nueva (DEC-12). PostGIS ya está instalado en la migración base.
+La **georreferenciación de proveedores** sí está en la Entrega 2 (D12, X2, X6): tabla `inventario.proveedor` con ubicación PostGIS y búsqueda de proveedores cercanos. Esa georreferenciación es **DEC-12**, ratificada en el acta A1. La extensión a **varias sedes o bodegas** queda fuera del alcance: la especificación describe un solo establecimiento. PostGIS ya está instalado en la migración base.
 
 ## 3. Propiedad de los datos y acceso a la base
 
