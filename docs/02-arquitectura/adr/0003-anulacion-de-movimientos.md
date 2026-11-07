@@ -1,6 +1,6 @@
 # ADR-0003 · Anulación controlada de movimientos en lugar de eliminación física
 
-- **Estado:** Propuesto (depende de DEC-06)
+- **Estado:** Aceptado (DEC-06 ratificada en el acta A1, `docs/02-arquitectura/acta-A1-decisiones.md`)
 - **Fecha:** 2026-09-27
 - **Relacionado:** HU-13 · RF-20 · RN-13 · RNF-06
 
