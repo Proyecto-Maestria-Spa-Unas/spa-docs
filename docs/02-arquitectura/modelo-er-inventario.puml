@@ -1,0 +1,272 @@
+
+@startuml modelo-er-inventario
+
+title MODELO ENTIDAD-RELACIÓN FINAL\nSistema de Inventario - Spa de Uñas
+
+hide methods
+hide stereotypes
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+' =========================================================
+' ESQUEMA: INVENTARIO
+' =========================================================
+
+package "inventario" {
+
+    entity "categoria" as categoria {
+        * id : integer <<PK>>
+        --
+        * nombre : citext <<UNIQUE>>
+        descripcion : varchar(200)
+        * orden : integer
+        * activa : boolean
+        * creado_en : timestamptz
+        * actualizado_en : timestamptz
+    }
+
+    entity "unidad_medida" as unidad_medida {
+        * id : integer <<PK>>
+        --
+        * codigo : citext <<UNIQUE>>
+        * nombre : varchar(40)
+        * magnitud : text
+        * admite_decimales : boolean
+    }
+
+    entity "producto" as producto {
+        * id : uuid <<PK>>
+        --
+        * codigo : citext <<UNIQUE>>
+        * nombre : varchar(120)
+        descripcion : text
+        * categoria_id : integer <<FK>>
+        * unidad_medida_id : integer <<FK>>
+        * stock_actual : numeric(14,3)
+        stock_minimo : numeric(14,3)
+        * costo_promedio : numeric(14,4)
+        * descontinuado : boolean
+        * estado : text <<GENERATED>>
+        * version : integer
+        * creado_en : timestamptz
+        * actualizado_en : timestamptz
+    }
+
+    entity "proveedor" as proveedor {
+        * id : uuid <<PK>>
+        --
+        * nit : varchar(30) <<UNIQUE>>
+        * nombre : varchar(120)
+        telefono : varchar(30)
+        correo : varchar(254)
+        direccion : varchar(200)
+        ubicacion : geography(Point,4326)
+        * activo : boolean
+        * creado_en : timestamptz
+    }
+
+    entity "motivo_movimiento" as motivo_movimiento {
+        * id : integer <<PK>>
+        --
+        * codigo : varchar(30) <<UNIQUE>>
+        * nombre : varchar(150)
+        * aplica_a : varchar(10)
+        * activo : boolean
+        * creado_en : timestamptz
+    }
+
+    entity "movimiento" as movimiento {
+        * id : bigint <<PK>>
+        --
+        * producto_id : uuid <<FK>>
+        * tipo : varchar(10)
+        motivo_id : integer <<FK>>
+        * cantidad : numeric(14,3)
+        * saldo_resultante : numeric(14,3)
+        costo_unitario : numeric(14,4)
+        * costo_promedio_resultante : numeric(14,4)
+        proveedor_id : uuid <<FK>>
+        observacion : varchar(280)
+        * registrado_por : uuid <<FK>>
+        * ocurrido_en : timestamptz
+        movimiento_anulado_id : bigint <<FK, UNIQUE>>
+        * clave_idempotencia : uuid <<UNIQUE>>
+    }
+}
+
+' =========================================================
+' ESQUEMA: SEGURIDAD
+' =========================================================
+
+package "seguridad" {
+
+    entity "rol" as rol {
+        * id : smallint <<PK>>
+        --
+        * codigo : varchar(30) <<UNIQUE>>
+        * nombre : varchar(50) <<UNIQUE>>
+        descripcion : varchar(200)
+        * activo : boolean
+        * creado_en : timestamptz
+        * actualizado_en : timestamptz
+    }
+
+    entity "permiso" as permiso {
+        * id : smallint <<PK>>
+        --
+        * codigo : varchar(60) <<UNIQUE>>
+        * nombre : varchar(100) <<UNIQUE>>
+        descripcion : varchar(200)
+        * activo : boolean
+        * creado_en : timestamptz
+    }
+
+    entity "rol_permiso" as rol_permiso {
+        * rol_id : smallint <<PK, FK>>
+        * permiso_id : smallint <<PK, FK>>
+        --
+        * asignado_en : timestamptz
+    }
+
+    entity "perfil" as perfil {
+        * usuario_id : uuid <<PK, FK>>
+        --
+        * rol_id : smallint <<FK>>
+        * nombre_completo : varchar(120)
+        * activo : boolean
+        * creado_en : timestamptz
+        * actualizado_en : timestamptz
+    }
+}
+
+' =========================================================
+' ESQUEMA: AUDITORIA
+' =========================================================
+
+package "auditoria" {
+
+    entity "registro_cambio" as registro_cambio {
+        * id : bigint <<PK>>
+        --
+        * esquema_tabla : text
+        * nombre_tabla : text
+        * operacion : text
+        * registro_id : jsonb
+        usuario_id : uuid
+        datos_anteriores : jsonb
+        datos_nuevos : jsonb
+        * ocurrido_en : timestamptz
+    }
+}
+
+' =========================================================
+' SUPABASE: ENTIDAD EXTERNA
+' =========================================================
+
+package "Supabase - externo" {
+
+    entity "auth.users" as auth_users {
+        * id : uuid <<PK>>
+        --
+        email : text
+        raw_user_meta_data : jsonb
+    }
+}
+
+' =========================================================
+' RELACIONES: INVENTARIO
+' =========================================================
+
+categoria ||--o{ producto : clasifica
+
+unidad_medida ||--o{ producto : unidad
+
+producto ||--o{ movimiento : registra
+
+proveedor |o--o{ movimiento : proveedor_opcional
+
+motivo_movimiento |o--o{ movimiento : motivo_opcional
+
+movimiento "0..1" -- "0..1" movimiento : movimiento_anulado_id
+
+' =========================================================
+' RELACIONES: SEGURIDAD
+' =========================================================
+
+rol ||--o{ perfil : asignado_a
+
+rol ||--o{ rol_permiso : contiene
+
+permiso ||--o{ rol_permiso : asignado_a
+
+' =========================================================
+' RELACIONES: IDENTIDAD SUPABASE
+' =========================================================
+
+auth_users ||--o| perfil : identidad
+
+auth_users ||--o{ movimiento : registrado_por
+
+' =========================================================
+' NOTAS DEL MODELO
+' =========================================================
+
+note right of producto
+  **Reglas de producto**
+
+  - Código único.
+  - Stock actual no negativo.
+  - Costo promedio no negativo.
+  - Estado calculado automáticamente.
+  - Stock mínimo opcional.
+  - Stock y costo promedio
+    actualizados mediante movimientos.
+end note
+
+note right of movimiento
+  **Reglas de movimientos**
+
+  - Cantidad mayor que cero.
+  - Saldo resultante no negativo.
+  - Clave de idempotencia única.
+  - Movimientos inmutables.
+  - Las anulaciones se registran
+    como nuevos movimientos.
+  - Conserva el costo promedio
+    resultante de cada operación.
+end note
+
+note bottom of proveedor
+  **Georreferenciación**
+
+  ubicacion:
+  geography(Point, 4326)
+
+  Índice espacial GiST.
+end note
+
+note right of registro_cambio
+  **Auditoría**
+
+  registro_id utiliza JSONB.
+
+  No existen FK directas hacia
+  las tablas auditadas.
+
+  usuario_id es nullable y
+  no tiene FK declarada.
+
+  Tablas auditadas:
+  - inventario.producto
+  - inventario.proveedor
+  - inventario.categoria
+  - seguridad.perfil
+
+  Las referencias son polimórficas.
+end note
+
+note "Vistas de consulta (no son tablas físicas):\n\n- inventario.v_inventario\n- inventario.v_alerta_stock\n- inventario.v_kardex\n- inventario.v_consumo_diario" as vistas
+
+@enduml
