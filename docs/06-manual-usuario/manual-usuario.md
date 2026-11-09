@@ -2,7 +2,7 @@
 
 Sistema de gestión y control interno del inventario de un spa de uñas. Este manual explica, paso a paso, cómo usar cada pantalla según el rol de la persona que ingresa.
 
-> **Estado de la redacción (F17).** El texto está completo para las pantallas que ya funcionan. Los recuadros «Captura pendiente» se reemplazan por imágenes de la versión de staging cuando estén desplegados el tablero de decisiones (F15) y las correcciones de accesibilidad (F16). Las pantallas de **Historial** y **Proveedores** aún no están implementadas y se describen como «próximamente».
+> **Pendientes** El texto está completo para las pantallas que ya funcionan. Los recuadros «Captura pendiente» se reemplazan por imágenes de la versión de staging cuando estén desplegados el tablero de decisiones (F15) y las correcciones de accesibilidad (F16). Las pantallas de **Historial** y **Proveedores** aún no están implementadas y se describen como «próximamente».
 
 ## Contenido
 
