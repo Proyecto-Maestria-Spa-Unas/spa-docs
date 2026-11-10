@@ -1,8 +1,8 @@
 # Manual de usuario de NailsSpa
 
-Sistema de gestión y control interno del inventario de un spa de uñas. Este manual explica, paso a paso, cómo usar cada pantalla según el rol de la persona que ingresa.
+NailsSpa es el sistema de gestión y control interno del inventario de un spa de uñas. Este manual explica, paso a paso, cómo usar cada pantalla según el rol de la persona que ingresa: **Administrador**, **Gerente** o **Manicurista**.
 
-> **Pendientes** El texto está completo para las pantallas que ya funcionan. Los recuadros «Captura pendiente» se reemplazan por imágenes de la versión de staging cuando estén desplegados el tablero de decisiones (F15) y las correcciones de accesibilidad (F16). Las pantallas de **Historial** y **Proveedores** aún no están implementadas y se describen como «próximamente».
+> **Sobre las capturas.** Las imágenes muestran la aplicación con datos de prueba. Los círculos y recuadros rojos numerados señalan dónde hacer clic o qué mirar en cada paso; debajo de cada imagen está la lista de las marcas. Los datos personales se ocultaron.
 
 ## Contenido
 
@@ -13,26 +13,27 @@ Sistema de gestión y control interno del inventario de un spa de uñas. Este ma
 5. [Manual para la Manicurista](#5-manual-para-la-manicurista)
 6. [Mensajes frecuentes y qué hacer](#6-mensajes-frecuentes-y-qué-hacer)
 7. [Consejos de accesibilidad](#7-consejos-de-accesibilidad)
-8. [Lista de capturas por tomar](#8-lista-de-capturas-por-tomar)
 
 ## 1. Qué puede hacer cada rol
 
 NailsSpa muestra solo las opciones que corresponden a tu rol. Si una opción no aparece en el menú, tu rol no tiene permiso para usarla.
 
-| Opción del menú | Administrador | Gerente | Manicurista |
+| Opción | Administrador | Gerente | Manicurista |
 |---|:-:|:-:|:-:|
-| Inventario (consultar) | Sí | Sí | Sí |
-| Inventario (crear, editar, descontinuar) | Sí | No | No |
+| Inventario: consultar | Sí | Sí | Sí |
+| Inventario: crear, editar y descontinuar productos | Sí | No | No |
 | Detalle del producto con kardex valorizado | Sí | Sí | No |
-| Registrar movimiento: salida | Sí | No | Sí |
 | Registrar movimiento: entrada | Sí | No | No |
+| Registrar movimiento: salida | Sí | No | Sí |
 | Historial de movimientos | Todos | Todos | Solo los propios |
-| Alertas y tablero: lista de alertas | Sí | Sí | Sí |
-| Alertas y tablero: gráficos, exportar datos y mapa | Sí | Sí | No |
-| Proveedores | Sí | Sí | Sí |
+| Anular un movimiento | Sí | No | No |
+| Alertas: lista de productos por reponer | Sí | Sí | Sí |
+| Tablero de decisiones, exportar datos y proveedores cercanos | Sí | Sí | No |
+| Proveedores: consultar | Sí | Sí | Sí |
+| Proveedores: crear, editar, activar y desactivar | Sí | No | No |
 | Usuarios | Sí | Sí | No |
 
-> **Nota.** El Gerente consulta y analiza, pero no registra movimientos ni modifica el catálogo. La Manicurista solo registra salidas de insumos.
+> **Nota.** El Gerente consulta y analiza, pero no registra movimientos ni modifica el catálogo. La Manicurista registra salidas de insumos y consulta lo que ella misma registró.
 
 ## 2. Ingresar, salir y recuperar la contraseña
 
@@ -42,43 +43,63 @@ NailsSpa muestra solo las opciones que corresponden a tu rol. Si una opción no 
 2. Escribe tu **Correo** y tu **Contraseña**.
 3. Pulsa **Ingresar**. Si todo está bien, entras a la pantalla de **Inventario**.
 
-> **Captura pendiente (staging):** pantalla de ingreso con los campos Correo y Contraseña.
+![Pantalla de ingreso con los campos Correo y Contraseña, el botón Ingresar y el enlace ¿Olvidaste tu contraseña?](img/01-ingreso.png)
 
-Si ves el mensaje **«Correo o contraseña incorrectos.»**, revisa que el correo esté bien escrito y vuelve a intentarlo. Si tu usuario fue desactivado, pide al Administrador que lo active.
+*Marcas rojas: **1** Correo · **2** Contraseña · **3** Ingresar · **4** ¿Olvidaste tu contraseña?*
+
+Si ves **«Correo o contraseña incorrectos.»**, revisa que el correo esté bien escrito y vuelve a intentarlo. Si tu usuario fue desactivado, pide al Administrador que lo active.
 
 ### 2.2 Cerrar sesión
 
-Pulsa **Salir** en la parte superior derecha del menú. La sesión también se cierra sola a los **30 minutos**; si pasa, vuelve a ingresar.
+Pulsa **Salir**, en la parte superior derecha. La sesión también se cierra sola a los **30 minutos**; si pasa, vuelve a ingresar.
 
 ### 2.3 Recuperar la contraseña
 
 Si olvidaste tu contraseña:
 
 1. En la pantalla de ingreso, pulsa **¿Olvidaste tu contraseña?**.
-2. Escribe tu **Correo** y pulsa **Enviar enlace**.
-3. La pantalla muestra siempre el mismo mensaje, exista o no la cuenta. Eso protege la privacidad de los usuarios.
-4. Abre el correo que recibes y pulsa el enlace. Te lleva a una pantalla para escribir la **nueva contraseña**.
-5. Escribe la contraseña dos veces. Debe tener **entre 8 y 128 caracteres** y las dos deben coincidir.
-6. Pulsa el botón para guardarla. Aparece **«Contraseña actualizada»**; vuelve a la pantalla de ingreso y entra con la nueva clave.
+2. Escribe tu **Correo** y pulsa **Enviar enlace**. La pantalla muestra siempre el mismo mensaje, exista o no la cuenta: así se protege la privacidad de los usuarios.
 
-> **Captura pendiente (staging):** pantalla «Recuperar contraseña» y pantalla «Contraseña actualizada».
+   ![Pantalla Recuperar contraseña con el campo Correo y el botón Enviar enlace](img/02-recuperar-solicitud.png)
 
-Si el enlace del correo venció o ya se usó, la pantalla te avisa y te deja pedir otro desde el paso 1. Si no te llega el correo, revisa la carpeta de spam y espera unos minutos antes de pedirlo de nuevo.
+   *Marcas rojas: **1** Correo · **2** Enviar enlace · **3** Volver a ingresar*
+
+3. Abre el correo que recibes y pulsa el enlace. Te lleva a la pantalla **Nueva contraseña**.
+4. Escribe la **Nueva contraseña** (mínimo 8 caracteres) y repítela en **Repite la contraseña**. Las dos deben coincidir.
+5. Pulsa **Guardar contraseña**.
+
+   ![Pantalla Nueva contraseña con los campos Nueva contraseña y Repite la contraseña](img/03-recuperar-nueva.png)
+
+   *Marcas rojas: **1** Nueva contraseña · **2** Repite la contraseña · **3** Guardar contraseña*
+
+6. Aparece **«Contraseña actualizada»** con el mensaje «Listo. Ya puedes ingresar con tu nueva contraseña.». Pulsa **Ir a ingresar** y entra con la nueva clave.
+
+   ![Pantalla Contraseña actualizada con el enlace Ir a ingresar](img/04-recuperar-lista.png)
+
+   *Marcas rojas: **1** Ir a ingresar*
+
+Si el enlace del correo venció o ya se usó, la pantalla te avisa y te deja pedir otro desde el paso 2. Si no te llega el correo, revisa la carpeta de spam y espera unos minutos antes de pedirlo de nuevo. En cualquier momento puedes volver con el enlace **Volver a ingresar**.
 
 ## 3. Manual para el Administrador
 
 El Administrador tiene acceso a todas las opciones del menú: **Inventario**, **Registrar movimiento**, **Historial**, **Alertas y tablero**, **Proveedores** y **Usuarios**.
 
+![Menú del Administrador con las seis opciones](img/22-menu-administrador.png)
+
 ### 3.1 Consultar el inventario
 
 1. Pulsa **Inventario** en el menú.
-2. La tabla muestra **Código**, **Producto**, **Categoría**, **Stock actual**, **Stock mínimo** y **Estado**.
-3. Para encontrar un producto:
-   - Escribe en **Buscar** (nombre o código).
+2. La tabla muestra **Código**, **Producto**, **Categoría**, **Stock actual**, **Stock mínimo**, **Estado** y **Acciones**.
+3. Para encontrar un producto, usa los **Filtros del inventario**:
+   - Escribe en **Buscar** el nombre o el código.
    - Elige una **Categoría** o **Todas las categorías**.
    - Elige un **Estado** o **Todos los estados**.
    - Marca **Incluir productos descontinuados** si quieres verlos.
-4. Usa **Anterior** y **Siguiente** para cambiar de página.
+4. Debajo de la tabla ves la página y el total de productos. Usa **Anterior** y **Siguiente** para cambiar de página.
+
+![Pantalla Inventario con los filtros y la tabla de productos](img/05-inventario.png)
+
+*Marcas rojas: **1** Buscar · **2** Categoría · **3** Estado · **4** Incluir productos descontinuados · **5** + Crear producto · **6** Nombre del producto (abre el detalle) · **7** Anterior y Siguiente*
 
 El **Estado** se muestra con ícono y texto, no solo con color:
 
@@ -89,17 +110,20 @@ El **Estado** se muestra con ícono y texto, no solo con color:
 | ■ Agotado | No quedan existencias. |
 | — Descontinuado | El producto ya no se maneja; se conserva su historial. |
 
-> **Captura pendiente (staging):** tabla de inventario con filtros y los cuatro estados.
-
 ### 3.2 Ver el detalle de un producto y su kardex
 
+Esta opción es para el Administrador y el Gerente.
+
 1. En la tabla, pulsa el **nombre del producto**.
-2. Se abre el detalle con el **kardex valorizado**: cada entrada y salida con su cantidad, costo y saldo.
-3. Para acotar el periodo, completa **Desde** y **Hasta** y pulsa el botón de filtrar.
+2. Se abre el detalle con el **kardex valorizado (costo promedio ponderado)**: cada entrada y salida con su cantidad, costo unitario, costo total, saldo, costo promedio y valor del saldo. Al final aparecen el **saldo final** y el **valor final**.
+3. Para acotar el periodo, completa **Desde** y **Hasta** y pulsa **Filtrar**.
+4. Para volver, pulsa **← Volver al inventario**.
 
-El costo del inventario se calcula por **costo promedio ponderado**: cada vez que entra mercancía con costo, el promedio se recalcula. Las salidas se valoran al promedio vigente.
+![Detalle de un producto con el kardex valorizado](img/06-inventario-esmalte.png)
 
-> **Captura pendiente (staging):** detalle de un producto con el kardex.
+*Marcas rojas: **1** ← Volver al inventario · **2** Desde, Hasta y Filtrar · **3** Kardex valorizado*
+
+El costo se calcula por **costo promedio ponderado**: cada vez que entra mercancía con costo, el promedio se recalcula. Las salidas se valoran al promedio vigente.
 
 ### 3.3 Crear un producto
 
@@ -109,13 +133,15 @@ El costo del inventario se calcula por **costo promedio ponderado**: cada vez qu
    - **Nombre** (por ejemplo, Esmalte rojo).
    - **Descripción** (opcional).
    - **Categoría** y **Unidad de medida**.
-   - **Cantidad inicial**, si el producto ya tiene existencias.
-   - **Stock mínimo** (opcional). Si lo dejas vacío, el producto no genera alertas.
+   - **Cantidad inicial**, si el producto ya tiene existencias. Se registra como saldo inicial.
+   - **Stock mínimo** (opcional): la cantidad mínima antes de generar una alerta. Si lo dejas vacío, el producto no genera alertas.
 3. Pulsa **Guardar producto**. Aparece un aviso de éxito y el producto queda en la tabla.
 
-Si el código ya existe, la pantalla lo indica y no guarda el producto. Si un campo está mal, el mensaje aparece debajo de ese campo.
+![Formulario Crear producto](img/07-producto-crear.png)
 
-> **Captura pendiente (staging):** formulario «Crear producto».
+*Marcas rojas: **1** Código y Nombre · **2** Categoría y Unidad de medida · **3** Cantidad inicial y Stock mínimo · **4** Guardar producto*
+
+Si el código ya existe, la pantalla lo indica y no guarda el producto. Si un campo está mal, el mensaje aparece debajo de ese campo.
 
 ### 3.4 Editar, descontinuar y reactivar un producto
 
@@ -126,41 +152,76 @@ Si el código ya existe, la pantalla lo indica y no guarda el producto. Si un ca
 ### 3.5 Registrar un movimiento (entrada o salida)
 
 1. Pulsa **Registrar movimiento** en el menú.
-2. Elige **Registrar entrada** (llegó mercancía) o **Registrar salida** (se consumió o se dio de baja).
-3. Completa el formulario:
+2. Elige **Registrar entrada** (llegó mercancía) o **Registrar salida** (se consumió o se dio de baja). Se abre el formulario.
+3. Completa el formulario. Los campos con asterisco (\*) son obligatorios:
    - **Producto**.
-   - **Motivo del movimiento** (por ejemplo, compra o consumo de servicio).
+   - **Motivo del movimiento**.
    - **Cantidad**.
-   - En las entradas por compra, el **Costo unitario** y el **Proveedor**. El costo unitario debe ser el costo neto de compra (precio menos descuentos, más transporte y otros costos directos).
-   - **Observación** (opcional).
-4. Envía el formulario con el botón del final. Aparece **«¡Movimiento registrado correctamente!»**.
+   - Si es una entrada con motivo **Compra a proveedor**, también el **Costo unitario** y el **Proveedor**. El costo unitario debe ser el costo neto de compra (precio menos descuentos, más transporte y otros costos directos).
+   - **Observaciones** (opcional).
+4. Pulsa **Registrar movimiento**. Aparece un aviso de éxito. Para descartar el formulario, pulsa **Cancelar**.
+
+![Formulario Registrar entrada con motivo Compra a proveedor, costo unitario y proveedor](img/08-movimiento-entrada.png)
+
+*Marcas rojas: **1** Registrar entrada · **2** Producto · **3** Motivo del movimiento · **4** Cantidad · **5** Registrar movimiento*
 
 Si después del movimiento el producto queda con stock bajo o agotado, el aviso te lo dice. Si intentas sacar más cantidad de la que hay, la pantalla muestra que el stock es insuficiente y no registra nada. Pulsar el botón dos veces no duplica el movimiento.
 
-> **Captura pendiente (staging):** formulario de entrada y formulario de salida.
+### 3.6 Consultar el historial y anular un movimiento
 
-### 3.6 Historial y anulación de movimientos *(próximamente)*
+1. Pulsa **Historial** en el menú. La tabla **Movimientos registrados** muestra **Fecha**, **Producto**, **Tipo** (Entrada, Salida o Anulación), **Motivo**, **Cantidad**, **Saldo** y **Acciones**, y el total de registros.
+2. Para filtrar, usa **Filtrar movimientos**: **Producto**, **Tipo de movimiento**, **Desde** y **Hasta**. Pulsa **Limpiar filtros** para quitarlos.
+3. Usa **Anterior** y **Siguiente** para cambiar de página.
 
-La pantalla **Historial** permitirá consultar todos los movimientos, filtrarlos por producto, tipo y fechas, y **anular** un movimiento registrado por error. Los movimientos no se borran: la anulación deja constancia y exige una confirmación explícita.
+![Pantalla Historial de movimientos con filtros y tabla](img/10-historial.png)
+
+*Marcas rojas: **1** Filtros · **2** Limpiar filtros · **3** Ver detalle*
+
+Para ver un movimiento completo, pulsa **Ver detalle**. Se abre el **Detalle del movimiento** con el producto, el tipo, la fecha, el motivo, la cantidad, el saldo resultante, el costo unitario y la observación.
+
+![Ventana Detalle del movimiento con el botón Anular movimiento](img/11-historial-detalle.png)
+
+*Marcas rojas: **1** Anular movimiento*
+
+**Anular un movimiento registrado por error** (solo el Administrador):
+
+1. En el detalle, pulsa **Anular movimiento**.
+2. En **Confirmar anulación**, escribe el **Motivo de la anulación** (mínimo 5 caracteres).
+3. Pulsa **Confirmar anulación**.
+
+![Ventana Confirmar anulación con el campo Motivo de la anulación](img/12-historial-anular.png)
+
+*Marcas rojas: **1** Motivo de la anulación · **2** Confirmar anulación*
+
+Los movimientos no se borran: la anulación registra un movimiento inverso que ajusta el inventario y deja constancia. No se puede anular si el stock disponible ya no alcanza para revertirlo, o si el producto está descontinuado; en esos casos la pantalla te lo explica.
 
 ### 3.7 Alertas y tablero
 
 Pulsa **Alertas y tablero**. La pantalla tiene cuatro partes.
 
-**Alertas de reposición.** Lista los productos que necesitan reponerse, con **Producto**, **Estado**, **Stock actual**, **Stock mínimo** y **Faltante**. Puedes filtrar por **Estado** (bajo stock o agotado). Solo aparecen productos que tienen stock mínimo definido.
+**Productos por reponer.** Lista los productos que necesitan reponerse, con **Producto**, **Estado**, **Stock actual**, **Stock mínimo** y **Faltante**. Puedes filtrar por **Estado** (bajo stock o agotado). Solo aparecen productos que tienen stock mínimo definido. El número junto a **Alertas y tablero** en el menú indica cuántos productos están en alerta.
 
-**Tablero de decisiones** *(disponible con F15)*. Muestra tres cifras y cuatro gráficos de los últimos 30 días, incluido hoy:
+**Tablero de decisiones.** Muestra tres cifras y cuatro gráficos de los últimos 30 días, incluido hoy:
 
 | Indicador | Para qué sirve |
 |---|---|
 | Valor del inventario | Cuánto vale el stock actual (existencias por costo promedio). Si no hay costos registrados, dice «Sin costos registrados». |
 | Consumo de 30 días | Cuántas unidades salieron en el periodo. |
+| Productos | Cuántos productos hay en el inventario. |
 | Productos por estado | Cuántos productos hay disponibles, con bajo stock, agotados y descontinuados. |
-| Top de rotación | Los productos que más salen. |
-| Consumo por categoría o por producto | Qué se consume más. Cambia la agrupación con la lista **Agrupar el consumo por**. |
-| Cobertura estimada (días) | Para cuántos días alcanza el stock al ritmo de consumo actual. Muestra los 10 productos con menos cobertura. |
+| Top de rotación (30 días) | Los productos que más salen. |
+| Consumo de 30 días por categoría o por producto | Qué se consume más. Cambia la agrupación con la lista **Agrupar el consumo por**. |
+| Cobertura estimada (días) | Para cuántos días alcanza el stock al ritmo de consumo actual. El gráfico muestra los productos con menos cobertura. |
+
+![Tablero de decisiones con las tres cifras y los cuatro gráficos](img/14-tablero-graficos.png)
+
+*Marcas rojas: **1** Cifras principales · **2** Gráfico · **3** Agrupar el consumo por · **4** Ver como tabla*
 
 Cada gráfico tiene un botón **Ver como tabla** con los mismos datos, y **Ver gráfico** para volver.
+
+![Tablero de decisiones con los gráficos mostrados como tablas](img/15-tablero-tablas.png)
+
+*Marcas rojas: **1** Ver gráfico*
 
 **Exportar datos.** Descarga un archivo con el inventario o los movimientos:
 
@@ -168,71 +229,115 @@ Cada gráfico tiene un botón **Ver como tabla** con los mismos datos, y **Ver g
 2. En **Formato**, elige **CSV (se abre en Excel)** o **Parquet (análisis de datos)**.
 3. Pulsa **Descargar**. Cuando el archivo está listo, aparece **«Descarga lista»** con su nombre, por ejemplo `inventario-20261108.csv`.
 
-**Proveedores cercanos.** Un mapa con los proveedores ubicados cerca de la sede.
+![Tarjeta Exportar datos con las listas Qué descargar y Formato y el botón Descargar](img/16-exportar.png)
 
-> **Captura pendiente (staging):** lista de alertas; tablero de decisiones con gráficos y con tablas; tarjeta «Exportar datos»; mapa de proveedores cercanos.
+*Marcas rojas: **1** Qué descargar · **2** Formato · **3** Descargar*
 
-### 3.8 Proveedores *(pendiente)*
+**Proveedores cercanos.** Sirve para reponer los productos en alerta: busca los proveedores que están cerca de la sede.
 
-La pantalla **Proveedores** permitirá consultar, crear y editar proveedores, con su ubicación en el mapa. El NIT no puede repetirse.
+1. Haz clic en el mapa, o escribe la **Latitud** y la **Longitud** del punto de búsqueda.
+2. Ajusta el **Radio** en kilómetros con la barra.
+3. Debajo del mapa aparece la lista de proveedores dentro del radio, con la distancia a cada uno. Pulsa **Descargar GeoJSON** para guardar el resultado.
+
+![Tarjeta Proveedores cercanos con el mapa, el radio y la lista de proveedores](img/17-mapa-proveedores.png)
+
+*Marcas rojas: **1** Latitud y Longitud · **2** Radio · **3** Mapa · **4** Descargar GeoJSON · **5** Lista de proveedores cercanos*
+
+### 3.8 Gestionar proveedores
+
+1. Pulsa **Proveedores**. Cada proveedor aparece en una tarjeta con su estado (**Activo** o inactivo), **NIT**, **Teléfono**, **Correo**, **Dirección** y **Ubicación**.
+2. Marca **Mostrar proveedores inactivos** si quieres verlos también.
+3. **Crear:** pulsa **Nuevo proveedor** y completa el formulario:
+   - **Nombre del proveedor** y **NIT** son obligatorios. El NIT tiene el formato 900123456-7 y no puede repetirse.
+   - **Teléfono**, **Correo electrónico** y **Dirección** son opcionales.
+   - En **Ubicación del proveedor**, haz clic en el mapa para marcar el punto; debajo se muestran la latitud y la longitud.
+   - Pulsa **Guardar proveedor**.
+4. **Editar:** pulsa **Editar** en la tarjeta, cambia los datos y pulsa **Guardar proveedor**. El NIT no se puede modificar.
+5. **Activar o desactivar:** pulsa **Desactivar** (o **Activar**) en la tarjeta. Los proveedores no se borran: al desactivarlos se conserva su historial.
+
+![Pantalla Proveedores con las tarjetas de cada proveedor](img/18-proveedores.png)
+
+*Marcas rojas: **1** Mostrar proveedores inactivos · **2** Nuevo proveedor · **3** Editar · **4** Desactivar*
+
+![Formulario Nuevo proveedor con el mapa para marcar la ubicación](img/19-proveedor-formulario.png)
+
+*Marcas rojas: **1** Nombre y NIT · **2** Mapa de ubicación · **3** Guardar proveedor*
 
 ### 3.9 Gestionar usuarios
 
-1. Pulsa **Usuarios**. La tabla muestra **Nombre**, **Usuario** (correo), **Rol**, **Estado** y **Acciones**. Puedes ver 10, 25 o 50 usuarios por página.
-2. **Crear un usuario:** pulsa **Nuevo usuario**, completa **nombre completo**, **correo**, **Rol** y **Contraseña temporal** (de 8 a 128 caracteres) y pulsa **Guardar**. Entrega la contraseña temporal a la persona por un medio seguro; luego puede cambiarla con **¿Olvidaste tu contraseña?**.
-3. **Editar:** en **Acciones**, cambia el nombre o el rol. El correo no se puede modificar.
-4. **Activar o desactivar:** usa el interruptor de la fila. El cambio es inmediato. Los usuarios **no se borran**: al desactivarlos, ya no pueden ingresar, pero se conserva su historial.
+1. Pulsa **Usuarios**. La tabla muestra **Nombre**, **Usuario** (correo), **Rol**, **Estado** y **Acciones**. Puedes ver 10, 25 o 50 usuarios por página con **Registros por página**.
+2. **Crear un usuario:** pulsa **Nuevo usuario**, completa el nombre completo, el correo, el **Rol** y la **Contraseña temporal** (de 8 a 128 caracteres) y pulsa **Guardar**. Entrega la contraseña temporal a la persona por un medio seguro; luego puede cambiarla con **¿Olvidaste tu contraseña?**.
+3. **Editar:** pulsa **Editar** en la fila para cambiar el nombre o el rol. El correo no se puede modificar.
+4. **Activar o desactivar:** usa el interruptor de la fila. El cambio es inmediato. Los usuarios **no se borran**: al desactivarlos, ya no pueden ingresar, pero se conserva su historial. No puedes desactivar tu propia cuenta.
 
 Los avisos de éxito se cierran solos a los pocos segundos; los de error se quedan hasta que los cierres.
 
-> **Captura pendiente (staging):** tabla de usuarios y formulario «Nuevo usuario».
+![Pantalla Usuarios con la tabla y el interruptor de estado](img/20-usuarios.png)
+
+*Marcas rojas: **1** Nuevo usuario · **2** Interruptor de estado · **3** Editar · **4** Registros por página*
+
+![Formulario Nuevo usuario](img/21-usuario-nuevo.png)
+
+*Marcas rojas: **1** Campos del usuario · **2** Guardar*
 
 ## 4. Manual para el Gerente
 
 El Gerente consulta y analiza la información. Su menú muestra **Inventario**, **Historial**, **Alertas y tablero**, **Proveedores** y **Usuarios**. No ve **Registrar movimiento**.
 
+![Menú del Gerente con cinco opciones](img/23-menu-gerente.png)
+
 | Tarea | Dónde está |
 |---|---|
 | Consultar el inventario y filtrarlo | [3.1](#31-consultar-el-inventario) |
 | Ver el detalle y el kardex valorizado de un producto | [3.2](#32-ver-el-detalle-de-un-producto-y-su-kardex) |
-| Revisar las alertas de reposición | [3.7](#37-alertas-y-tablero) |
-| Analizar el tablero de decisiones (gráficos y tablas) | [3.7](#37-alertas-y-tablero) |
-| Exportar el inventario o los movimientos a CSV o Parquet | [3.7](#37-alertas-y-tablero) |
-| Ver los proveedores cercanos en el mapa | [3.7](#37-alertas-y-tablero) |
-| Consultar el historial de todos los movimientos *(próximamente)* | [3.6](#36-historial-y-anulación-de-movimientos-próximamente) |
+| Consultar el historial de todos los movimientos | [3.6](#36-consultar-el-historial-y-anular-un-movimiento) (solo consulta; no puede anular) |
+| Revisar las alertas, el tablero de decisiones, exportar datos y ver los proveedores cercanos | [3.7](#37-alertas-y-tablero) |
+| Consultar los proveedores | [3.8](#38-gestionar-proveedores) (solo consulta) |
 | Gestionar usuarios | [3.9](#39-gestionar-usuarios) |
 
-Lo que el Gerente **no** puede hacer: crear, editar o descontinuar productos, registrar entradas o salidas y anular movimientos. En la tabla de inventario no verá los botones **+ Crear producto**, **Editar** ni **Descontinuar**.
+Lo que el Gerente **no** puede hacer: crear, editar o descontinuar productos; registrar entradas o salidas; anular movimientos; y crear, editar o desactivar proveedores. En esas pantallas no verá los botones correspondientes (**+ Crear producto**, **Editar**, **Descontinuar**, **Anular movimiento**, **Nuevo proveedor**).
 
 ## 5. Manual para la Manicurista
 
 La Manicurista registra el consumo de insumos y revisa qué hay disponible. Su menú muestra **Inventario**, **Registrar movimiento**, **Historial**, **Alertas y tablero** y **Proveedores**. No ve **Usuarios**.
 
+![Menú de la Manicurista con cinco opciones](img/24-menu-manicurista.png)
+
 ### 5.1 Consultar el inventario
 
-Funciona igual que en [3.1](#31-consultar-el-inventario), solo para consulta: no aparecen los botones para crear, editar ni descontinuar, y no se abre el detalle con el kardex valorizado.
+Funciona igual que en [3.1](#31-consultar-el-inventario), solo para consulta: no aparecen los botones para crear, editar ni descontinuar, y el detalle con el kardex valorizado es solo para el Administrador y el Gerente.
 
 ### 5.2 Registrar una salida
 
 Cuando uses un insumo, regístralo para que el inventario siga al día.
 
-1. Pulsa **Registrar movimiento**. Solo verás **Registrar salida**.
+1. Pulsa **Registrar movimiento**, y luego **Registrar salida**.
 2. Elige el **Producto** y el **Motivo del movimiento**.
 3. Escribe la **Cantidad** que usaste.
-4. Agrega una **Observación** si hace falta y envía el formulario.
-5. Verás **«¡Movimiento registrado correctamente!»**. Si el producto queda con stock bajo o agotado, el aviso te lo indica; avísale al Administrador para que lo reponga.
+4. Agrega una **Observación** si hace falta y pulsa **Registrar movimiento**.
+5. Verás un aviso de éxito. Si el producto queda con stock bajo o agotado, el aviso te lo indica; avísale al Administrador para que lo reponga.
+
+![Formulario Registrar salida](img/09-movimiento-salida.png)
+
+*Marcas rojas: **1** Registrar salida · **2** Producto · **3** Motivo del movimiento · **4** Cantidad · **5** Registrar movimiento. La captura se tomó con el Administrador, que ve los dos botones; la Manicurista solo ve **Registrar salida**.*
 
 Si escribes más cantidad de la que hay, la pantalla muestra que el stock es insuficiente y no registra nada.
 
-> **Captura pendiente (staging):** formulario «Registrar salida».
+### 5.3 Ver mis movimientos
 
-### 5.3 Ver mis movimientos *(pendiente)*
-
-
+En **Historial** ves solo los movimientos que tú registraste. Puedes filtrarlos y pulsar **Ver detalle** para ver cada uno, como se explica en [3.6](#36-consultar-el-historial-y-anular-un-movimiento). Si registraste algo por error, pídele al Administrador que lo anule: la Manicurista no puede anular movimientos.
 
 ### 5.4 Revisar las alertas
 
-En **Alertas y tablero** ves la lista de productos por reponer, con su estado, stock actual, stock mínimo y faltante. No ves los gráficos, la exportación ni el mapa, que son para el Administrador y el Gerente.
+En **Alertas y tablero** ves la lista de productos por reponer, con su estado, stock actual, stock mínimo y faltante. No ves el tablero de decisiones, la exportación ni el mapa de proveedores cercanos, que son para el Administrador y el Gerente.
+
+![Pantalla Alertas y tablero de la Manicurista con la lista de productos por reponer](img/13-alertas.png)
+
+*Marcas rojas: **1** Estado · **2** Lista de productos por reponer*
+
+### 5.5 Consultar proveedores
+
+En **Proveedores** puedes ver los datos de contacto de cada proveedor. Solo el Administrador puede crearlos, editarlos o desactivarlos.
 
 ## 6. Mensajes frecuentes y qué hacer
 
@@ -243,7 +348,7 @@ En **Alertas y tablero** ves la lista de productos por reponer, con su estado, s
 | No hay conexión con el servidor. | No se pudo comunicar con el sistema. | Revisa tu conexión a internet y reintenta con el botón **Reintentar**. |
 | No tienes permiso para… | Tu rol no puede hacer esa acción. | Pídele al Administrador que la haga o que revise tu rol. |
 | El código ya existe. | Hay otro producto con el mismo código. | Usa un código distinto. |
-| Stock insuficiente. | Intentas sacar más cantidad de la que hay. | Corrige la cantidad. |
+| Stock insuficiente. | Intentas sacar o anular más cantidad de la que hay. | Corrige la cantidad o revisa las existencias del producto. |
 | Otra persona modificó este producto. | Dos personas editaron el mismo producto. | Recarga la página y repite el cambio. |
 | El enlace venció o no es válido. | El enlace de recuperación ya no sirve. | Pide uno nuevo desde **Recuperar contraseña**. |
 
@@ -253,4 +358,3 @@ En **Alertas y tablero** ves la lista de productos por reponer, con su estado, s
 - Los estados del inventario siempre llevan ícono y texto, no solo color.
 - Cada gráfico del tablero tiene su **tabla** con los mismos datos (botón **Ver como tabla**).
 - Con zoom del navegador al 200 % el contenido sigue siendo legible; para ampliar, usa **Ctrl** y **+**.
-
