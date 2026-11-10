@@ -21,33 +21,34 @@ RNF-10 (respaldo, DEC-09, `spa-infra-aws` + Supabase PITR).
 
 ## Trazabilidad HU ↔ endpoint ↔ pantalla ↔ prueba (A2)
 
-Tarea A2 (spa-docs#32). Fuentes verificadas el 07-nov-2026 (contratos y rutas en `develop`; estado según los PR de cada repositorio):
+Tarea A2 (spa-docs#32). Fuentes verificadas el 07-nov-2026 y estado actualizado el 10-nov-2026 (contratos y rutas en `develop`; estado según los PR de cada repositorio):
 
 - **Endpoints:** contratos `spa-backend-api/docs/openapi/*-v1.yaml`. Cada operación declara su HU en la descripción.
 - **Pantallas:** rutas de `spa-frontend-web/src/App.jsx` y `src/constants/routes.js`, y la tabla de HU de cada `src/features/*/README.md`.
 - **Pruebas:** casos CP del plan de pruebas Q1 (`spa-qa/docs/PLAN_PRUEBAS.md`, sección 3). Los casos 401/403 de cada endpoint están en su sección 4.
 
-**Estado al 07-nov-2026:**
+**Estado al 10-nov-2026:**
 
-- Backend (`develop`): 2 de los 37 endpoints implementados, `GET /productos` y `GET /productos/{id}` (B8, spa-backend-api#43). Los otros 35 responden `NoImplementado` (501). `POST /auth/login` y `GET /auth/me` están en el PR spa-backend-api#45 (B5), en revisión de QA.
-- Frontend (`develop`): pantalla de inicio de sesión implementada (F6, spa-frontend-web#30) con los componentes base de F4 (#23). Las demás páginas son la estructura base del andamiaje. La pantalla de inventario está en el PR spa-frontend-web#25, en revisión de QA.
-- La columna «Estado al 07-nov» se actualiza con cada PR fusionado; la trazabilidad queda completa en R2.
+- Backend (`develop`): con X1 (spa-backend-api#65) y X2 (spa-backend-api#66) todos los endpoints del contrato tienen implementación. El cierre formal (B12: cero 501 declarados en el contrato, cobertura ≥ 80 % y README) está en PR.
+- Frontend (`develop`): todas las pantallas integradas, incluido el tablero de decisiones (F15, spa-frontend-web#42) y las correcciones de la auditoría de accesibilidad WCAG 2.2 AA (F16, spa-frontend-web#47).
+- Verificación de QA en staging: suite Q2 de identidad, permisos y catálogo (spa-qa#9), prueba de carga Q5 (spa-qa#10) y pruebas de QA por PR registradas en cada issue.
+- Pendientes para R2: datos de demostración (D11) y cierre del backend (B12).
 
-| HU | Endpoint (contrato) | Pantalla (ruta · componente) | Pruebas (Q1) | Estado al 07-nov |
+| HU | Endpoint (contrato) | Pantalla (ruta · componente) | Pruebas (Q1) | Estado al 10-nov |
 |---|---|---|---|---|
-| HU-01 Autenticación | `POST /auth/login` · `GET /auth/me` (identidad-v1) | `/login` · `LoginPage`; menú según permisos (`MENU`) | CP-HU01-01 a CP-HU01-08 | Pantalla en develop (F6). API en PR #45 (B5) |
-| HU-02 Registrar producto | `POST /productos` · `GET /unidades-medida` (catalogo-v1) | `/inventario` · `InventarioPage` (formulario de producto) | CP-HU02-01 a CP-HU02-06 | API pendiente (B9). Pantalla en PR #25 |
-| HU-03 Consultar inventario | `GET /productos` · `GET /productos/{id}` (catalogo-v1) | `/inventario` · `InventarioPage` (tabla con filtros) | CP-HU03-01 a CP-HU03-07 | API en develop (B8). Pantalla en PR #25 |
-| HU-04 Filtrar por categoría | `GET /categorias` · `GET /productos?categoria_id=` (catalogo-v1) | `/inventario` · `InventarioPage` (filtro de categoría) | CP-HU04-01, CP-HU04-02 | `GET /productos?categoria_id` en develop (B8); `GET /categorias` pendiente (B4). Pantalla en PR #25 |
-| HU-05 Actualizar producto | `PATCH /productos/{id}` con `If-Match` (catalogo-v1) | `/inventario` · `InventarioPage` (edición con `version`) | CP-HU05-01 a CP-HU05-03 | API pendiente (B9). Pantalla en PR #25 |
-| HU-06 Registrar entrada | `POST /movimientos/entradas` (movimientos-v1) | `/movimientos` · `MovimientosPage` | CP-HU06-01 a CP-HU06-04 | Pendiente (B10, F12) |
-| HU-07 Registrar salida | `POST /movimientos/salidas` (movimientos-v1) | `/movimientos` · `MovimientosPage` | CP-HU07-01 a CP-HU07-03 | Pendiente (B10, F12) |
-| HU-08 Consultar historial | `GET /movimientos` · `GET /movimientos/{id}` (movimientos-v1) | `/historial` · `HistorialPage` | CP-HU08-01 a CP-HU08-03 | Pendiente (B11, F13) |
-| HU-09 Gestionar usuarios | `GET`/`POST /usuarios` · `GET`/`PATCH /usuarios/{id}` · `PATCH /usuarios/{id}/estado` (identidad-v1) | `/usuarios` · `UsuariosPage` | CP-HU09-01 a CP-HU09-07 | Pendiente (B6, F8) |
-| HU-10 Alertas de bajo stock | `GET /alertas` (analitica-v1) | `/tablero` · `TableroPage` (lista de alertas) | CP-HU10-01 a CP-HU10-03 | Pendiente (X4) |
-| HU-11 Productos agotados | `POST /movimientos/salidas` · `GET /alertas` | `/movimientos` y `/tablero` | CP-HU11-01 | Pendiente (B10, X4) |
-| HU-12 Descontinuar producto | `POST /productos/{id}/descontinuar` · `POST /productos/{id}/reactivar` (catalogo-v1) | `/inventario` · `InventarioPage` | CP-HU12-01 a CP-HU12-03 | API pendiente (B9). Pantalla en PR #25 |
-| HU-13 Anular movimiento | `POST /movimientos/{id}/anulaciones` (movimientos-v1). No existe `DELETE` (DEC-06) | `/historial` · `HistorialPage` (anulación con confirmación) | CP-HU13-01 a CP-HU13-03 | Pendiente (B11, F13) |
+| HU-01 Autenticación | `POST /auth/login` · `GET /auth/me` (identidad-v1) | `/login` · `LoginPage`; menú según permisos (`MENU`) | CP-HU01-01 a CP-HU01-08 | Integrado: API B5 (spa-backend-api#45), pantalla F6 (spa-frontend-web#30) |
+| HU-02 Registrar producto | `POST /productos` · `GET /unidades-medida` (catalogo-v1) | `/inventario` · `InventarioPage` (formulario de producto) | CP-HU02-01 a CP-HU02-06 | Integrado: API B9 (spa-backend-api#54), pantalla spa-frontend-web#25 |
+| HU-03 Consultar inventario | `GET /productos` · `GET /productos/{id}` (catalogo-v1) | `/inventario` · `InventarioPage` (tabla con filtros) | CP-HU03-01 a CP-HU03-07 | Integrado: API B8 (spa-backend-api#43), pantalla spa-frontend-web#25 |
+| HU-04 Filtrar por categoría | `GET /categorias` · `GET /productos?categoria_id=` (catalogo-v1) | `/inventario` · `InventarioPage` (filtro de categoría) | CP-HU04-01, CP-HU04-02 | Integrado: B8 (spa-backend-api#43), `GET /categorias` con B9 (spa-backend-api#54) y verificado en staging; pantalla spa-frontend-web#25 |
+| HU-05 Actualizar producto | `PATCH /productos/{id}` con `If-Match` (catalogo-v1) | `/inventario` · `InventarioPage` (edición con `version`) | CP-HU05-01 a CP-HU05-03 | Integrado: API B9 (spa-backend-api#54), pantalla spa-frontend-web#25 |
+| HU-06 Registrar entrada | `POST /movimientos/entradas` (movimientos-v1) | `/movimientos` · `MovimientosPage` | CP-HU06-01 a CP-HU06-04 | Integrado: B10 (spa-backend-api#62), F12 (spa-frontend-web#45), motivos X1 (spa-backend-api#65, spa-frontend-web#44) |
+| HU-07 Registrar salida | `POST /movimientos/salidas` (movimientos-v1) | `/movimientos` · `MovimientosPage` | CP-HU07-01 a CP-HU07-03 | Integrado: B10 (spa-backend-api#62), F12 (spa-frontend-web#45), motivos X1 (spa-backend-api#65, spa-frontend-web#44) |
+| HU-08 Consultar historial | `GET /movimientos` · `GET /movimientos/{id}` (movimientos-v1) | `/historial` · `HistorialPage` | CP-HU08-01 a CP-HU08-03 | Integrado: B11 (spa-backend-api#63), F13 (spa-frontend-web#46) |
+| HU-09 Gestionar usuarios | `GET`/`POST /usuarios` · `GET`/`PATCH /usuarios/{id}` · `PATCH /usuarios/{id}/estado` (identidad-v1) | `/usuarios` · `UsuariosPage` | CP-HU09-01 a CP-HU09-07 | Integrado: B6 (spa-backend-api#52), pantalla F8 en develop |
+| HU-10 Alertas de bajo stock | `GET /alertas` (analitica-v1) | `/tablero` · `TableroPage` (lista de alertas) | CP-HU10-01 a CP-HU10-03 | Integrado: pantalla X4 (spa-frontend-web#34) |
+| HU-11 Productos agotados | `POST /movimientos/salidas` · `GET /alertas` | `/movimientos` y `/tablero` | CP-HU11-01 | Integrado: B10 (spa-backend-api#62), X4 (spa-frontend-web#34) |
+| HU-12 Descontinuar producto | `POST /productos/{id}/descontinuar` · `POST /productos/{id}/reactivar` (catalogo-v1) | `/inventario` · `InventarioPage` | CP-HU12-01 a CP-HU12-03 | Integrado: API B9 (spa-backend-api#54), pantalla spa-frontend-web#25 |
+| HU-13 Anular movimiento | `POST /movimientos/{id}/anulaciones` (movimientos-v1). No existe `DELETE` (DEC-06) | `/historial` · `HistorialPage` (anulación con confirmación) | CP-HU13-01 a CP-HU13-03 | Integrado: B11 (spa-backend-api#63), F13 (spa-frontend-web#46) |
 
 ### Endpoints que no dependen de una sola HU
 
@@ -85,3 +86,9 @@ Registro según el acta A1 (`docs/02-arquitectura/acta-A1-decisiones.md`, PR #38
 | DEC-10 | Se ratifica: 8 categorías y 12 unidades de medida | HU-02 · HU-04 · RF-12 |
 | DEC-11 | Costo promedio ponderado, solo como valoración. El cliente es microempresa (Grupo 3) y su política está en `docs/05-contabilidad/politica-costo-inventarios.md` (A3) | HU-06 · HU-07 · RF-10 |
 | DEC-12 | Proveedores georreferenciados (D12, X2, X6). Varias sedes quedan fuera del alcance | RF-17 |
+
+### Decisiones de PO posteriores al acta A1
+
+| Fecha | Decisión | HU / requisitos que afecta |
+|---|---|---|
+| 09-nov-2026 | El mapa de proveedores parte de la sede del spa (Calle 57 # 7-11, Bogotá) con su marcador propio y solo lo ven Administrador y Gerente (permiso `analitica.consultar`); la Manicurista no lo necesita. La vista de varias sedes queda como escenario de escalabilidad (spa-frontend-web#41) | RF-17 · DEC-12 |
