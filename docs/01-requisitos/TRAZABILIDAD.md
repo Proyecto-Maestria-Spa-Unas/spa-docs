@@ -14,7 +14,7 @@
 | HU-10 | Alertas de bajo stock | RF-16 · RF-17 · RF-18 · RN-09 · RN-14 | M4 | ● | ● | ● | ● |
 | HU-11 | Productos agotados | RF-08 · RF-19 · RN-05 · RN-10 | M3 | ● | ● | ● | ● |
 | HU-12 | Descontinuar producto | RF-05 · RN-11 · RN-12 | M2 | ● | ● | ● | ● |
-| HU-13 | Eliminar movimiento | RF-20 · RN-13 · RNF-06 | M4 | ● | ● | ● | ● |
+| HU-13 | Anular movimiento | RF-20 · RN-13 · RNF-06 | M4 | ● | ● | ● | ● |
 
 RNF transversales: RNF-03 (usabilidad, Web), RNF-04/05 (rendimiento/disponibilidad, DEC-07),
 RNF-10 (respaldo, DEC-09, `spa-infra-aws` + Supabase PITR).
